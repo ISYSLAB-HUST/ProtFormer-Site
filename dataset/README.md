@@ -1,5 +1,5 @@
 # Parameters of DeepPPISP
-'''
+'''bash
     dim = 1280
     num_layers = 2
     n_hidden = 64
