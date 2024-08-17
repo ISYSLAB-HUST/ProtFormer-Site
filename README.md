@@ -5,6 +5,7 @@
 - [Usage](#usage)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
+- [Citation](#citation)
 
 ## Introduction
 
@@ -32,9 +33,10 @@ conda activate ProtFormerSite
 ```
 
 ## Pre-trained models and parameters
-The pre trained model and parameters are placed in the [weight folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/weight). Please read the README.md file in the weight folder for further prediction
+The pre-trained model and parameters are placed in the [weight folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/weight). Please read the README.md file in the weight folder for further prediction
 
 ## Usage
+We provide test script for users to evaluate the prediction result.
 ```bash
 python predict.py
 ```
@@ -57,3 +59,12 @@ ProtFormer-Site with and/or references the following separate libraries and pack
 - [biopython](https://github.com/biopython/biopython)
 - [esm](https://github.com/facebookresearch/esm)
 - [minLoRA](https://github.com/cccntu/minLoRA)
+
+## Citation
+
+If you use our model, please cite our work: 
+...
+
+
+
+
