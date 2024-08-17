@@ -33,7 +33,7 @@ conda activate ProtFormerSite
 ```
 
 ## Pre-trained models and parameters
-The pre-trained model and parameters are placed in the [weight folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/weight). Please read the README.md file in the weight folder for further prediction.
+The pre-trained model and parameters are placed in the [weight folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/weight). Please read the [README.md](https://github.com/shuxiang111/ProtFormer-Site/blob/main/dataset/README.md) file in the weight folder for further prediction.
 
 ## Usage
 We provide test script for users to evaluate the prediction result.
