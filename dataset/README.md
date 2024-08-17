@@ -1,4 +1,4 @@
-# Please download the parameters from here to test the corresponding dataset。
+# Please download the parameters from here to test the corresponding dataset.
 
 ## Parameters of DeepPPISP
 
