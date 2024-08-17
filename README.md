@@ -1,7 +1,7 @@
-# ProtSSSD
-![License](https://img.shields.io/github/license/ISYSLAB-HUST/ProtSSSD)
-![Issues](https://img.shields.io/github/issues/ISYSLAB-HUST/ProtSSSD)
-![Stars](https://img.shields.io/github/stars/ISYSLAB-HUST/ProtSSSD)
+# ProtFormer-Site
+![License](https://img.shields.io/github/license/shuxiang111/ProtFormer-Site)
+![Issues](https://img.shields.io/github/issues/shuxiang111/ProtFormer-Site)
+![Stars](https://img.shields.io/github/stars/shuxiang111/ProtFormer-Site)
 
 - [Introduction](#introduction)
 - [Installation](#installation)
