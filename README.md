@@ -22,7 +22,7 @@ cd ProtFormer-Site
 
 ### !!!Noted: 
 
-### Please change prefix path into your own path in the last line of environment.yaml file.
+### Please change prefix path into your own path in the last line of environment.yml file.
 
 ### Please match your python version ,cuda version and torch version with the package.
 
