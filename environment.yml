@@ -170,6 +170,7 @@ dependencies:
   - pip:
       - fair-esm==2.0.0
       - fsspec==2024.6.0
+      - minlora==0.1.0
       - pandas==2.2.2
       - pip==24.2
       - protflash==0.1.1
