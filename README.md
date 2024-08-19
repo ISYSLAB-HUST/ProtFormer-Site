@@ -9,22 +9,17 @@
 
 ## Introduction
 
-ProtFormer-Site......
+ProtFormer-Site is a novel protein-protein interaction site prediction tool that leverages the [ESM2](https://github.com/facebookresearch/esm) protein language model and our newly developed ProtFormer architecture. It surpasses most PPI prediction tools that rely on protein structure and co-evolution information, using only protein single sequence information.
 
 ## Installation
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/shuxiang111/ProtFormer-Site.git
+git clone https://github.com/ISYSLAB-HUST/ProtFormer-Site.git
 cd ProtFormer-Site
 ```
 
-### !!!Noted: 
-
-### Please change prefix path into your own path in the last line of environment.yml file.
-
-### Please match your python version ,cuda version and torch version with the package.
 
 ### 2. Create and Activate Environment
 ```bash
@@ -32,26 +27,30 @@ conda env create -f environment.yml
 conda activate ProtFormerSite
 ```
 
-## Pre-trained models and parameters
-The pre-trained model and parameters are placed in the [weight folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/weight). Please read the [README.md](https://github.com/shuxiang111/ProtFormer-Site/blob/main/dataset/README.md) file in the weight folder for further prediction.
+## Pre-trained models and Config parameters
+The pre-trained model and parameters are placed in the [weight folder](https://github.com/ISYSLAB-HUST/ProtFormer-Site/tree/main/weight). Please read the [README.md](https://github.com/ISYSLAB-HUST/ProtFormer-Site/blob/main/config) file in the weight folder for further prediction.
 
 ## Usage
 We provide test script for users to evaluate the prediction result.
 ```bash
-python predict.py
+# example: run DeepPPIS test
+python predict.py --config ./config/DeepPPIS.yaml
 ```
 
 ## Issues
 If you encounter any problems, please open an issue.
 
+
 ## License
-...
+This project is licensed under the MIT License for the code and a custom license for the parameter files.
 
 ### Code License
-...
+
+The code in this project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
 
 ### Parameter Files License
-...
+
+The parameter files in this project are licensed under a custom license. Educational use is free of charge, while commercial use requires a commercial license. See the [PARAMETER_LICENSE](./PARAMETER_LICENSE) file for more details.
 
 ## Acknowledgements
 ProtFormer-Site with and/or references the following separate libraries and packages:
@@ -61,9 +60,14 @@ ProtFormer-Site with and/or references the following separate libraries and pack
 - [minLoRA](https://github.com/cccntu/minLoRA)
 
 ## Citation
+If you use this code or one of our pretrained models for your publication, please cite our paper:
 
-If you use our model, please cite our work: 
-...
+```
+@article{wang2024,
+  title={Ultra-fast and Accurate Prediction of Protein-protein Interaction Sites Using Protein Language Models and ProtFormer}
+}
+```
+
 
 
 
