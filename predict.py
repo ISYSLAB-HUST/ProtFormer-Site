@@ -12,6 +12,8 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from einops import rearrange
 from minlora import add_lora, LoRAParametrization
+import yaml
+import argparse
 
 
 #####################################
@@ -32,7 +34,13 @@ logger.addHandler(handler)
 
 #####################################
 
-def eval(val_loader, model, embedding_model, batch_converter, device, criterion, num_recycle):
+def get_params():
+    parser = argparse.ArgumentParser('ProtFormer-Site')
+    parser.add_argument("--config", type=str, help='config file')
+    args, _ = parser.parse_known_args()
+    return args
+
+def eval(val_loader, model, embedding_model, batch_converter, device, num_recycle):
     embedding_model.eval()
     model.eval()
     start_time = time.time()
@@ -57,7 +65,6 @@ def eval(val_loader, model, embedding_model, batch_converter, device, criterion,
                 reprs["pair_repr"] = attentions
                 output = model(reprs, mask=None, num_recycle=num_recycle)
                 predict = output["ss2"]
-                loss = criterion(rearrange(predict, 'b l c -> (b l) c'), rearrange(protein_labels, 'b l -> (b l)'))
 
                 predict_probs = F.softmax(output["ss2"], dim=-1)
                 predict = predict_probs.argmax(dim=-1)
@@ -65,7 +72,6 @@ def eval(val_loader, model, embedding_model, batch_converter, device, criterion,
                 predict = rearrange(predict, 'b l -> (b l)')
                 protein_labels = rearrange(protein_labels, 'b l -> (b l)')
 
-            val_loss += loss.item()
             all_preds.extend(predict.cpu().numpy())
             all_targets.extend(protein_labels.cpu().numpy())
             all_probs.extend(predict_probs.cpu().numpy().flatten())
@@ -86,25 +92,18 @@ def eval(val_loader, model, embedding_model, batch_converter, device, criterion,
         "PRC": prc
     }
 
-def main():
+def main(args):
 
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-    """parameter"""
-    dim = 1280
-    num_layers = 2
-    n_hidden = 64
-    pair_dim = 20
-    dropout = 0.3
-    max_len = 1000
-    task = 'DeepPPISP'
-    save_dir = './weight'
-    num_recycle = 1
-    batch_size = 1
+    """parser config"""
+    with open(args["config"], 'r') as file:
+        config = yaml.safe_load(file)
 
     """Initialize model"""
     logger.info("Initializing model")
-    model = SSpredictor(dim=dim, num_layers=num_layers, n_hidden=n_hidden, pair_dim=pair_dim, dropout=dropout)
+    model = SSpredictor(dim=config["dim"], num_layers=config["num_layers"], n_hidden=config["n_hidden"], 
+                        pair_dim=config["pair_dim"], dropout=config["dropout"])
     
     lora_config = {
         torch.nn.Linear: {
@@ -119,13 +118,12 @@ def main():
     pretrain_model = pretrain_model.to(device)
 
     """load model"""
-    load_model(model, pretrain_model, task, save_dir=save_dir)
+    load_model(model, pretrain_model, config['task'], save_dir=config['save_dir'])
 
-    test_data = ProteinDataset("dataset/Task_DeepPPISP/Test_70.csv", max_len=max_len)
-    test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False)
-    criterion = torch.nn.CrossEntropyLoss(weight=torch.from_numpy(np.array([1, 5])).float().to(device))
+    test_data = ProteinDataset(config["test_dataset_path"], max_len=config['max_len'])
+    test_loader = DataLoader(test_data, batch_size=config['batch_size'], shuffle=False)
     start_time = time.time()
-    test_loss, test_metrics = eval(test_loader, model, pretrain_model, batch_converter, device, criterion, num_recycle)
+    test_loss, test_metrics = eval(test_loader, model, pretrain_model, batch_converter, device, config["num_recycle"])
     end_time = time.time()
     logger.info(f"run_time:{end_time-start_time}")
     logger.info(f"Test Loss: {test_loss}")
@@ -134,5 +132,10 @@ def main():
 
 if __name__ == "__main__":
     resource.setrlimit(resource.RLIMIT_NOFILE, (4096, 4096))
-    main()
+    try:
+        params = vars(get_params())
+        main(params)
+    except Exception as exception:
+        logger.exception(exception)
+        raise
 
