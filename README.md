@@ -34,7 +34,7 @@ The pre-trained models and parameters are placed in the [weight folder](https://
 We provide test script for users to evaluate the prediction result.
 ```bash
 # example: run Single_DeepPPIS test
-python predict.py --config ./config/Single_DeepPPIS.yaml
+python predict.py --config ./config/Single_DeepPPISP.yaml
 ```
 
 ## Issues
