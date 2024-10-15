@@ -28,7 +28,7 @@ conda activate ProtFormerSite
 ```
 
 ## Pre-trained models and Config parameters
-The pre-trained models and parameters are placed in the [weight folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/weight) and the [config folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/config).
+The pre-trained models and parameters are placed in the [weight folder](https://github.com/ISYSLAB-HUST/ProtFormer-Site-final/tree/main/weight) and the [config folder](https://github.com/ISYSLAB-HUST/ProtFormer-Site-final/tree/main/config).
 
 ## Usage
 We provide test script for users to evaluate the prediction result.
