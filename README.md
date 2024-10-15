@@ -9,7 +9,7 @@
 
 ## Introduction
 
-ProtFormer-Site is a novel protein-protein interaction site prediction tool that leverages the [ESM2](https://github.com/facebookresearch/esm) protein language model and our newly developed ProtFormer architecture. It surpasses most PPI prediction tools that rely on protein structure and co-evolution information, using only protein single sequence information.
+We propose a novel PPI site prediction framework, ProtFormer-Site, which utilizes large protein language model, an efficient parameter fine-tuning strategy, and the ProtFormer backbone. ProtFormer-Site demonstrated outstanding performance across all evaluation metrics on three benchmark datasets, with Matthews correlation coefficient (MCC) improvements ranging from 22.4% to 61.5% across different datasets. These results demonstrate that ProtFormer offers significant advantages in PPI site prediction, providing a more accurate and efficient solution.
 
 ## Installation
 
