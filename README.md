@@ -28,13 +28,13 @@ conda activate ProtFormerSite
 ```
 
 ## Pre-trained models and Config parameters
-The pre-trained model and parameters are placed in the [weight folder](https://github.com/ISYSLAB-HUST/ProtFormer-Site/tree/main/weight). Please read the [README.md](https://github.com/ISYSLAB-HUST/ProtFormer-Site/blob/main/config) file in the weight folder for further prediction.
+The pre-trained models and parameters are placed in the [weight folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/weight) and the [config folder](https://github.com/shuxiang111/ProtFormer-Site/tree/main/config).
 
 ## Usage
 We provide test script for users to evaluate the prediction result.
 ```bash
-# example: run DeepPPIS test
-python predict.py --config ./config/DeepPPIS.yaml
+# example: run Single_DeepPPIS test
+python predict.py --config ./config/Single_DeepPPIS.yaml
 ```
 
 ## Issues
